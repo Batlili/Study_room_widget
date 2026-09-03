@@ -35,14 +35,16 @@ The integration:
 ```text
 study-room-widget/
 ├── index.html
-├── style.css
-├── main.js
-├── pomodoro.js
-├── flow.js
-├── notifications.js
-├── preparation.js
-├── storage.js
-├── wheel.js
+├── css/
+│   └── style.css
+├── js/
+│   ├── main.js
+│   ├── pomodoro.js
+│   ├── flow.js
+│   ├── notifications.js
+│   ├── preparation.js
+│   ├── storage.js
+│   └── wheel.js
 ├── sounds/
 │   ├── carillon.wav
 │   ├── feerie.wav
