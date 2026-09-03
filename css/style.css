@@ -1,0 +1,901 @@
+/* MENU:
+   COULEUR
+   PAGE
+   WIDGET
+   CONTRÔLES SUPÉRIEURS
+   PALETTE DE COULEURS
+   TITRES
+   MODES
+   SÉLECTEURS À MOLETTE
+   PRÉPARATION
+   SESSION
+   PROGRESSION POMODORO
+   POINTS DU CYCLE
+   BOUTONS
+   PAUSE
+   FIN
+   RÉGLAGES
+   ICÔNES DES SESSIONS
+   LISTE DES RÉGLAGES
+   INTERRUPTEURS
+   SOUS-OPTIONS
+   BOUTON RETOUR
+   NOM DE SESSION — ACCUEIL
+   RESPONSIVE
+*/
+
+/* ─────────────────────────
+   COULEUR
+───────────────────────── */
+
+:root {
+    --widget-color: #A530E9;
+    --settings-title-color: #111111;
+    --settings-text-color: #222222;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --settings-title-color: #FFFFFF;
+        --settings-text-color: #F0F0F0;
+    }
+}
+
+
+/* ─────────────────────────
+   PAGE
+───────────────────────── */
+
+html {
+    background: transparent;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
+}
+
+
+/* ─────────────────────────
+   WIDGET
+───────────────────────── */
+
+.widget {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    padding: 35px 30px;
+    text-align: center;
+    color: var(--widget-color);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ─────────────────────────
+   CONTRÔLES SUPÉRIEURS
+───────────────────────── */
+
+.top-controls {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 4px;
+}
+
+.top-button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--widget-color);
+    opacity: 0.45;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.top-button:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+#colorButton {
+    font-size: 16px;
+}
+
+#settingsButton:hover {
+    opacity: 0.9;
+    transform: rotate(20deg) scale(1.1);
+}
+
+
+/* ─────────────────────────
+   PALETTE DE COULEURS
+───────────────────────── */
+
+.color-palette {
+    position: absolute;
+    top: 38px;
+    right: 6px;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 9px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+    z-index: 20;
+}
+
+.color-palette.visible {
+    display: flex;
+}
+
+.color-option {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+}
+
+.color-option.selected {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px currentColor;
+}
+
+.lilas { background: #A530E9; }
+.lilas-poudre { background: #D592FC; }
+
+.framboise { background: #E724B0; }
+.rose-petale { background: #FC79D7; }
+
+.bleu { background: #247FE7; }
+.bleu-ciel { background: #48D6FA; }
+
+.vert { background: #05BE3D; }
+.vert-pistache { background: #93FA89; }
+
+.ambre { background: #E79324; }
+.miel { background: #f2cf5b; }
+
+.bordeaux { background: #B5122D; }
+.rose-dragee { background: #E8A6B8; }
+
+/* ─────────────────────────
+   TITRES
+───────────────────────── */
+
+.title {
+    font-family: "Bodoni Moda", serif;
+    font-size: 27px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.subtitle {
+    font-family: "Cormorant", serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 28px;
+}
+
+
+/* ─────────────────────────
+   MODES
+───────────────────────── */
+
+.mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.mode-button {
+    min-width: 135px;
+    padding: 14px 18px;
+    border: 1px solid var(--widget-color);
+    border-radius: 14px;
+    background: transparent;
+    color: var(--widget-color);
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.mode-button:hover {
+    transform: translateY(-2px);
+    background: var(--widget-color);
+    color: white;
+}
+
+.mode-icon {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.mode-name {
+    display: block;
+    font-family: "Bodoni Moda", serif;
+    font-size: 16px;
+}
+
+.mode-duration {
+    display: block;
+    font-family: "Cormorant", serif;
+    font-size: 15px;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+
+/* ─────────────────────────
+   SÉLECTEURS À MOLETTE
+───────────────────────── */
+
+.wheel {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: ns-resize;
+}
+
+.wheel::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    height: 30px;
+    transform: translateY(-50%);
+    border-top: 1px solid var(--widget-color);
+    border-bottom: 1px solid var(--widget-color);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.wheel-item {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: "Cormorant", serif;
+    font-size: 17px;
+    opacity: 0.25;
+    transform: translateY(-28px);
+    transition: transform 0.15s ease, opacity 0.15s ease, font-size 0.15s ease;
+}
+
+.wheel-item.current {
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wheel-item.next {
+    transform: translateY(28px);
+    opacity: 0.25;
+}
+
+.wheel-item.previous {
+    transform: translateY(-28px);
+    opacity: 0.25;
+}
+
+.wheel-unit {
+    margin-left: 5px;
+    font-family: "Cormorant", serif;
+    font-size: 15px;
+    opacity: 0.75;
+}
+
+.duration-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ─────────────────────────
+   PRÉPARATION
+───────────────────────── */
+
+.preparation {
+    display: none;
+}
+
+.preparation.visible {
+    display: block;
+}
+
+.preparation-title {
+    font-family: "Bodoni Moda", serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.preparation-text {
+    font-family: "Cormorant", serif;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+
+
+/* ─────────────────────────
+   SESSION
+───────────────────────── */
+
+.session {
+    display: none;
+}
+
+.session.visible {
+    display: block;
+}
+
+.timer {
+    font-family: "Bodoni Moda", serif;
+    font-size: 55px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.session-label {
+    font-family: "Cormorant", serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+    opacity: 0.85;
+}
+
+.session-name-edit {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-family: "Cormorant", serif;
+    font-size: 14px;
+    padding: 0 3px;
+    margin-left: 3px;
+    opacity: 0.5;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: opacity 0.2s ease;
+}
+
+.session-name-edit:hover {
+    opacity: 1;
+}
+
+.session-name-edit-input {
+    border: none;
+    border-bottom: 1px solid var(--widget-color);
+    background: transparent;
+    color: inherit;
+    font-family: "Cormorant", serif;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+    width: 220px;
+    max-width: 70%;
+}
+
+/* ─────────────────────────
+   PROGRESSION POMODORO
+───────────────────────── */
+
+.pomodoro-progress {
+    width: 80%;
+    max-width: 280px;
+    height: 5px;
+    margin: 18px auto 14px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pomodoro-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--widget-color);
+    border-radius: inherit;
+    transition: width 0.4s linear;
+}
+
+/* ─────────────────────────
+   POINTS DU CYCLE
+───────────────────────── */
+
+.cycle-points {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.cycle-point {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    color: var(--widget-color);
+    font-size: 17px;
+    line-height: 1;
+    opacity: 0.45;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cycle-point.completed {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+/* ─────────────────────────
+   BOUTONS
+───────────────────────── */
+
+.session-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.session-secondary-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.action-button {
+    padding: 9px 18px;
+    border: 1px solid var(--widget-color);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--widget-color);
+    font-family: "Cormorant", serif;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+    background: var(--widget-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+
+/* ─────────────────────────
+   PAUSE
+───────────────────────── */
+
+.break-screen {
+    display: none;
+}
+
+.break-screen.visible {
+    display: block;
+}
+
+.break-title {
+    font-family: "Bodoni Moda", serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.break-subtitle {
+    font-family: "Cormorant", serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.break-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+/* ─────────────────────────
+   FIN
+───────────────────────── */
+
+.finished {
+    display: none;
+}
+
+.finished.visible {
+    display: block;
+}
+
+.finished-title {
+    font-family: "Bodoni Moda", serif;
+    font-size: 24px;
+    margin-bottom: 7px;
+}
+
+.finished-time {
+    font-family: "Cormorant", serif;
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+
+/* ─────────────────────────
+   RÉGLAGES
+───────────────────────── */
+
+.settings {
+    display: none;
+    text-align: left;
+    margin-top: 10px;
+    color: var(--settings-text-color);
+}
+
+.settings.visible {
+    display: block;
+}
+
+.settings-title {
+    text-align: center;
+    font-family: "Bodoni Moda", serif;
+    font-size: 24px;
+    color: var(--settings-title-color);
+    margin-bottom: 18px;
+}
+
+.setting-group {
+    padding: 13px 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: rgba(128, 128, 128, 0.08);
+    border: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.setting-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.setting-name {
+    font-family: "Bodoni Moda", serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--settings-title-color);
+}
+
+.setting-description {
+    font-family: "Cormorant", serif;
+    font-size: 15px;
+    line-height: 1.35;
+    color: var(--settings-text-color);
+    margin-bottom: 9px;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--settings-text-color);
+}
+
+.notification-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+
+/* ─────────────────────────
+   ICÔNES DES SESSIONS
+───────────────────────── */
+
+.session-icon-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.session-icon-option {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.06);
+    color: var(--settings-text-color);
+    font-size: 24px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.session-icon-option:hover {
+    transform: translateY(-1px);
+    border-color: var(--widget-color);
+    color: var(--widget-color);
+}
+
+.session-icon-option.selected {
+    border-color: var(--widget-color);
+    background: rgba(128, 128, 128, 0.1);
+    color: var(--widget-color);
+}
+.session-icon-option[data-icon="heart"] {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+}
+
+/* ─────────────────────────
+   LISTES DES RÉGLAGES
+───────────────────────── */
+
+.setting-select {
+    padding: 5px 8px;
+    border: 1px solid var(--widget-color);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-family: "Cormorant", serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.setting-select option {
+    background: white;
+    color: #333;
+}
+
+.setting-select.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: dark) {
+    .setting-select {
+        background: rgba(40, 40, 40, 0.9);
+        color: white;
+    }
+
+    .setting-select option {
+        background: #282828;
+        color: white;
+    }
+}
+
+.sound-control {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.sound-preview {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--settings-text-color);
+    font-size: 17px;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sound-preview:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+.sound-control .setting-select {
+    width: 125px;
+}
+
+/* ─────────────────────────
+   INTERRUPTEURS
+───────────────────────── */
+
+.switch {
+    position: relative;
+    width: 42px;
+    height: 23px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: rgba(128, 128, 128, 0.3);
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease;
+}
+
+.switch input:checked + .slider {
+    background: var(--widget-color);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(19px);
+}
+
+
+/* ─────────────────────────
+   SOUS-OPTIONS
+───────────────────────── */
+
+.sub-setting {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.sub-setting.hidden {
+    display: none;
+}
+
+.settings-note {
+    text-align: center;
+    font-family: "Cormorant", serif;
+    font-size: 14px;
+    color: var(--settings-text-color);
+    opacity: 0.9;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+
+/* ─────────────────────────
+   BOUTON RETOUR
+───────────────────────── */
+
+.settings-close,
+.restart-button {
+    border: none;
+    background: transparent;
+    color: var(--widget-color);
+    font-family: "Cormorant", serif;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.settings-close {
+    display: block;
+    margin: 18px auto 0;
+}
+
+.settings-close:hover,
+.restart-button:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+
+/* ─────────────────────────
+   NOM DE SESSION — ACCUEIL
+───────────────────────── */
+
+.session-name-home {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.session-name-home.visible {
+    display: block;
+}
+
+.session-name-home input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--widget-color);
+    border-radius: 8px;
+    background: rgba(128, 128, 128, 0.08);
+    color: inherit;
+    font-family: "Cormorant", serif;
+    font-size: 17px;
+    text-align: center;
+    outline: none;
+}
+
+.session-name-home input::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
+
+
+/* ─────────────────────────
+   RESPONSIVE
+───────────────────────── */
+
+@media (max-width: 450px) {
+
+    .widget {
+        padding: 30px 15px;
+    }
+
+    .mode-selection {
+        gap: 8px;
+    }
+
+    .mode-button {
+        min-width: 115px;
+        padding: 12px 10px;
+    }
+
+    .timer {
+        font-size: 48px;
+    }
+
+    .setting-row {
+        align-items: flex-start;
+    }
+
+}
