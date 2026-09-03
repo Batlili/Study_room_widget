@@ -1,0 +1,795 @@
+<!-- ═══════════════════════════════════════
+     HTML — STUDY ROOM SESSION
+
+     MENU
+     CONTRÔLES → PALETTE → ACCUEIL → SETTINGS
+     PRÉPARATION → SESSION → PAUSE → FIN
+════════════════════════════════════════ -->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="color-scheme" content="light dark">
+
+    <title>Study Room — Session</title>
+
+    <!-- POLICES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="widget">
+
+
+    <!-- ═══════════════════════════════════
+         CONTRÔLES
+    ═══════════════════════════════════ -->
+
+    <div class="top-controls">
+
+        <button class="top-button" id="settingsButton"
+                aria-label="Settings" title="Settings">⚙</button>
+
+        <button class="top-button" id="colorButton"
+                aria-label="Changer la couleur"
+                title="Changer la couleur">🎨</button>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+        PALETTE
+    ═══════════════════════════════════ -->
+
+    <div class="color-palette" id="colorPalette">
+
+        <!-- Lilas -->
+        <button class="color-option lilas"
+                data-color="#A530E9"
+                aria-label="Lilas"
+                title="Lilas"></button>
+
+        <button class="color-option lilas-poudre"
+                data-color="#d592fc"
+                style="background: #d592fc;"
+                aria-label="Lilas poudré"
+                title="Lilas poudré"></button>
+
+
+        <!-- Rose fuchsia -->
+        <button class="color-option framboise"
+                data-color="#e724b0"
+                aria-label="Rose fuchsia"
+                title="Rose fuchsia"></button>
+
+        <button class="color-option rose-petale"
+                data-color="#fc79d7"
+                style="background: #fc79d7;"
+                aria-label="Rose pétale"
+                title="Rose pétale"></button>
+
+
+        <!-- Bleu -->
+        <button class="color-option bleu"
+                data-color="#247FE7"
+                aria-label="Bleu azur"
+                title="Bleu azur"></button>
+
+        <button class="color-option bleu-ciel"
+                data-color="#48d6fa"
+                style="background: #48d6fa;"
+                aria-label="Bleu ciel"
+                title="Bleu ciel"></button>
+
+
+        <!-- Vert -->
+        <button class="color-option vert"
+                data-color="#05BE3D"
+                aria-label="Vert émeraude"
+                title="Vert émeraude"></button>
+
+        <button class="color-option vert-pistache"
+                data-color="#93fa89"
+                style="background: #93fa89;"
+                aria-label="Vert pistache"
+                title="Vert pistache"></button>
+
+
+        <!-- Ambre -->
+        <button class="color-option ambre"
+                data-color="#E79324"
+                aria-label="Ambre"
+                title="Ambre"></button>
+
+        <button class="color-option miel"
+                data-color="#f2cf5b"
+                style="background: #f2cf5b;"
+                aria-label="Miel"
+                title="Miel"></button>
+
+
+        <!-- Bordeaux -->
+        <button class="color-option bordeaux"
+                data-color="#B5122D"
+                aria-label="Bordeaux"
+                title="Bordeaux"></button>
+
+        <button class="color-option rose-dragée"
+                data-color="#E8A6B8"
+                style="background: #E8A6B8;"
+                aria-label="Rose dragée"
+                title="Rose dragée"></button>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         ACCUEIL
+    ═══════════════════════════════════ -->
+
+    <div id="home" class="home">
+
+        <div class="title">Session de travail</div>
+
+        <!-- Nom de session -->
+        <div class="session-name-home" id="sessionNameHome">
+            <input type="text" id="sessionNameInput"
+                   placeholder="Sur quoi veux-tu travailler ?"
+                   maxlength="60">
+        </div>
+
+
+        <!-- Modes -->
+        <div class="mode-selection">
+
+            <button class="mode-button" id="pomodoroButton">
+
+                <span class="mode-icon">🍅</span>
+                <span class="mode-name">Pomodoro</span>
+
+                <span class="mode-duration">
+                    <span id="pomodoroDurationLabel">25 min</span>
+                </span>
+
+            </button>
+
+
+            <button class="mode-button" id="flowButton">
+
+                <span class="mode-icon">∞</span>
+                <span class="mode-name">Flow</span>
+                <span class="mode-duration">sans limite</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         SETTINGS
+    ═══════════════════════════════════ -->
+
+    <div class="settings" id="settings">
+
+        <div class="settings-title">⚙ Settings</div>
+
+        <!-- Connexion Notion -->
+        <div class="setting-group">
+
+            <div class="setting-name">✦ Connexion Notion</div>
+
+            <div class="setting-description">
+                Connecte ton espace Notion pour enregistrer automatiquement
+                tes sessions de travail dans ton Planning.
+            </div>
+
+            <button
+                type="button"
+                class="notion-connect-button"
+                id="notionConnectButton">
+
+                Connecter Notion
+
+            </button>
+
+        </div>
+
+        <!-- Préparation -->
+        <div class="setting-group">
+
+            <div class="setting-header">
+
+                <div class="setting-name">✦ Session de préparation</div>
+
+                <label class="switch">
+                    <input type="checkbox" id="preparationEnabled">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+            <div class="setting-description">
+                Un court moment avant le travail pour préparer ton espace,
+                ouvrir tes documents et te mettre mentalement dans ta session.
+            </div>
+
+
+            <div class="sub-setting" id="preparationOptions">
+
+                <div class="setting-row">
+
+                    <span>Durée</span>
+
+                    <div class="duration-control">
+
+                        <div class="wheel" id="preparationWheel"
+                             data-min="1" data-max="30" data-value="5"></div>
+
+                        <span class="wheel-unit">min</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row" style="margin-top:10px">
+
+                    <span>Quand ?</span>
+
+                    <select class="setting-select" id="preparationFrequency">
+
+                        <option value="daily">Une fois par jour</option>
+                        <option value="cycle">Avant chaque cycle</option>
+                        <option value="session">Avant chaque session</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Nom de session -->
+        <div class="setting-group">
+
+            <div class="setting-header">
+
+                <div class="setting-name">✦ Nom de session</div>
+
+                <label class="switch">
+                    <input type="checkbox" id="sessionNameEnabled">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+            <div class="setting-description">
+                Indique ce sur quoi tu veux travailler avant de commencer.
+                Le nom apparaîtra pendant la session.
+            </div>
+
+        </div>
+
+
+        <!-- Pomodoro -->
+        <div class="setting-group">
+
+            <div class="setting-name">🍅 Temps de travail</div>
+
+            <div class="setting-description">
+                Durée de chaque session de travail en mode Pomodoro.
+            </div>
+
+            <div class="setting-row">
+
+                <span>Durée</span>
+
+                <div class="duration-control">
+
+                    <div class="wheel" id="pomodoroWheel"
+                         data-min="1" data-max="180" data-value="25"></div>
+
+                    <span class="wheel-unit">min</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pause courte -->
+        <div class="setting-group">
+
+            <div class="setting-name">☕ Pause courte</div>
+
+            <div class="setting-description">
+                La pause qui suit chaque session de travail,
+                sauf la dernière session du cycle.
+            </div>
+
+            <div class="setting-row">
+
+                <span>Durée</span>
+
+                <div class="duration-control">
+
+                    <div class="wheel" id="shortBreakWheel"
+                         data-min="1" data-max="30" data-value="5"></div>
+
+                    <span class="wheel-unit">min</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pause longue -->
+        <div class="setting-group">
+
+            <div class="setting-name">🌙 Pause longue</div>
+
+            <div class="setting-description">
+                La pause qui termine un cycle avant de commencer
+                éventuellement un nouveau cycle.
+            </div>
+
+            <div class="setting-row">
+
+                <span>Durée</span>
+
+                <div class="duration-control">
+
+                    <div class="wheel" id="longBreakWheel"
+                         data-min="1" data-max="60" data-value="15"></div>
+
+                    <span class="wheel-unit">min</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Sons -->
+        <div class="setting-group">
+
+            <div class="setting-name">🔔 Sons des notifications</div>
+
+            <div class="setting-description">
+                Choisis le son joué à la fin de chaque étape de ta session.
+            </div>
+
+
+            <div class="setting-row">
+
+                <div class="notification-label">
+
+                    <label class="switch">
+                        <input type="checkbox" id="conditioningNotification">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span>✦ Fin de la mise en condition</span>
+
+                </div>
+
+                <select class="setting-select" id="conditioningSound">
+                    <option value="carillon">✨ Carillon</option>
+                    <option value="feerie">🧚 Féerie</option>
+                    <option value="joyeux">🔔 Joyeux</option>
+                    <option value="classique">💫 Classique</option>
+                    <option value="serenite">🌿 Sérénité</option>
+                </select>
+
+                <button
+                    type="button"
+                    class="sound-preview"
+                    data-sound="conditioningSound"
+                    aria-label="Écouter le son"
+                    title="Écouter le son">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+
+            <div class="setting-row" style="margin-top:10px">
+
+                <div class="notification-label">
+
+                    <label class="switch">
+                        <input type="checkbox" id="workNotification">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span>🍅 Fin du travail</span>
+
+                </div>
+
+                <select class="setting-select" id="workSound">
+                    <option value="carillon">✨ Carillon</option>
+                    <option value="feerie">🧚 Féerie</option>
+                    <option value="joyeux">🔔 Joyeux</option>
+                    <option value="classique">💫 Classique</option>
+                    <option value="serenite">🌿 Sérénité</option>
+                </select>
+
+                <button
+                    type="button"
+                    class="sound-preview"
+                    data-sound="workSound"
+                    aria-label="Écouter le son"
+                    title="Écouter le son">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+
+            <div class="setting-row" style="margin-top:10px">
+
+                <div class="notification-label">
+
+                    <label class="switch">
+                        <input type="checkbox" id="shortBreakNotification">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span>☕ Fin de la pause courte</span>
+
+                </div>
+
+                <select class="setting-select" id="shortBreakSound">
+                    <option value="carillon">✨ Carillon</option>
+                    <option value="feerie">🧚 Féerie</option>
+                    <option value="joyeux">🔔 Joyeux</option>
+                    <option value="classique">💫 Classique</option>
+                    <option value="serenite">🌿 Sérénité</option>
+                </select>
+
+                <button
+                    type="button"
+                    class="sound-preview"
+                    data-sound="shortBreakSound"
+                    aria-label="Écouter le son"
+                    title="Écouter le son">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+
+            <div class="setting-row" style="margin-top:10px">
+
+                <div class="notification-label">
+
+                    <label class="switch">
+                        <input type="checkbox" id="longBreakNotification">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span>🌙 Fin de la pause longue</span>
+
+                </div>
+
+                <select class="setting-select" id="longBreakSound">
+                    <option value="carillon">✨ Carillon</option>
+                    <option value="feerie">🧚 Féerie</option>
+                    <option value="joyeux">🔔 Joyeux</option>
+                    <option value="classique">💫 Classique</option>
+                    <option value="serenite">🌿 Sérénité</option>
+                </select>
+
+                <button
+                    type="button"
+                    class="sound-preview"
+                    data-sound="longBreakSound"
+                    aria-label="Écouter le son"
+                    title="Écouter le son">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Enchaînement -->
+        <div class="setting-group">
+
+            <div class="setting-name">✦ Enchaînement</div>
+
+            <div class="setting-description">
+                En automatique, les sessions et pauses s'enchaînent
+                sans intervention. En manuel, tu choisis quand commencer
+                la session suivante.
+            </div>
+
+            <div class="setting-row">
+
+                <span>Mode</span>
+
+                <select class="setting-select" id="sequenceMode">
+                    <option value="automatic">Automatique</option>
+                    <option value="manual">Manuel</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Nombre de sessions -->
+        <div class="setting-group">
+
+            <div class="setting-name">✦ Nombre de sessions par cycle</div>
+
+            <div class="setting-description">
+                Une session = temps de travail + pause.
+                Quand tous les points sont remplis, le cycle est terminé
+                et la pause longue commence.
+            </div>
+
+            <div class="setting-row">
+
+                <span>Sessions</span>
+
+                <select class="setting-select" id="sessionsPerCycle">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Icône -->
+        <div class="setting-group">
+
+            <div class="setting-name">✦ Icône des sessions</div>
+
+            <div class="setting-description">
+                Choisis la forme utilisée pour représenter les sessions
+                de ton cycle.
+            </div>
+
+            <div class="session-icon-options">
+
+                <button type="button"
+                        class="session-icon-option selected"
+                        data-icon="circle"
+                        aria-label="Cercle">○</button>
+
+                <button type="button"
+                        class="session-icon-option"
+                        data-icon="heart"
+                        aria-label="Cœur">♡</button>
+
+                <button type="button"
+                    class="session-icon-option"
+                    data-icon="sparkle"
+                    aria-label="Éclat">✧</button>
+
+                <button type="button"
+                        class="session-icon-option"
+                        data-icon="clover"
+                        aria-label="Trèfle">♧</button>
+
+                <button type="button"
+                        class="session-icon-option"
+                        data-icon="star"
+                        aria-label="Étoile">☆</button>
+
+                <button type="button"
+                        class="session-icon-option"
+                        data-icon="flower"
+                        aria-label="Fleur">❀</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-note">
+            Les changements effectués pendant une session seront appliqués
+            à la prochaine session ou au prochain cycle.
+        </div>
+
+        <button class="settings-close" id="settingsClose">
+            ← Retour
+        </button>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         PRÉPARATION ACTIVE
+    ═══════════════════════════════════ -->
+
+    <div class="session" id="preparationSession">
+
+        <div class="preparation-title">✦ Mise en condition</div>
+
+        <div class="timer" id="activePreparationTimer">05:00</div>
+
+        <div class="session-label">
+            Prépare ton espace et prends quelques instants
+            pour te mettre dans ta session.
+        </div>
+
+        <div class="session-buttons">
+
+            <button class="action-button" id="skipPreparation">
+                Passer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         SESSION DE TRAVAIL
+    ═══════════════════════════════════ -->
+
+    <div class="session" id="session">
+
+        <div class="timer" id="timer">25:00</div>
+
+        <div class="pomodoro-progress">
+            <div class="pomodoro-progress-fill" id="pomodoroProgressFill"></div>
+        </div>
+
+        <div class="session-label" id="sessionLabel">
+
+            <span id="sessionNameDisplay">
+                Session de concentration
+            </span>
+
+            <button type="button"
+                    class="session-name-edit"
+                    id="sessionNameEdit"
+                    aria-label="Modifier le nom de session"
+                    title="Modifier le nom de session">✎</button>
+
+        </div>
+
+
+        <div class="cycle-points" id="cyclePoints"></div>
+
+
+        <div class="session-buttons">
+
+            <button class="action-button" id="pauseButton">
+                Ⅱ Pause
+            </button>
+
+            <button class="action-button" id="finishButton">
+                Terminer
+            </button>
+
+        </div>
+
+
+        <div class="session-secondary-actions">
+
+            <button class="restart-button" id="resetCycleButton">
+                ↻ Réinitialiser le cycle
+            </button>
+
+            <button class="restart-button" id="sessionHomeButton">
+                ← Accueil
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         PAUSE
+    ═══════════════════════════════════ -->
+
+    <div class="break-screen" id="breakScreen">
+
+        <div class="break-title" id="breakTitle">
+            ☕ Pause courte
+        </div>
+
+        <div class="timer" id="breakTimer">05:00</div>
+
+        <div class="break-subtitle" id="breakSubtitle">
+            Respire, bouge un peu, puis reviens tranquillement.
+        </div>
+
+        <div class="break-actions" id="breakActions"></div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         FIN DU CYCLE
+    ═══════════════════════════════════ -->
+
+    <div class="finished" id="finished">
+
+        <div class="finished-title">
+            Cycle terminé ✨
+        </div>
+
+        <div class="cycle-points" id="finishedPoints"></div>
+
+        <div class="finished-time" id="finishedTime">
+            Toutes les sessions sont terminées.
+        </div>
+
+        <div class="break-actions">
+
+            <button class="action-button" id="newCycleButton">
+                ✦ Nouveau cycle
+            </button>
+
+            <button class="restart-button" id="homeButton">
+                ← Accueil
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="js/wheel.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/preparation.js"></script>
+<script src="js/pomodoro.js"></script>
+<script src="js/flow.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
